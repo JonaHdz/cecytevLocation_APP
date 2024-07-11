@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Define el estilo del botón -->
+    <style name="primaryButton" >
+        <item name="android:backgroundTint">@color/gray</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">25dp</item>
+
+    </style>
+</resources>
