@@ -7,5 +7,4 @@ class LoginUseCase {
     private val repository = LoginRepository()
 
     suspend operator fun invoke(login: LoginModel): Int = repository.login(login)
-
 }

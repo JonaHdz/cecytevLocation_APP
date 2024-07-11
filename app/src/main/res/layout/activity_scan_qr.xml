@@ -6,24 +6,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.view.ScanQR"
-    android:background="@color/whitebackground">
+    android:background="@color/backgrounColor">
     <TextView
         android:id="@+id/tvTitleScanQR"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="Escaner de QR"
+        android:text=""
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="30dp"
         android:layout_marginTop="50dp"
-        android:textColor="@color/black"
+        android:textColor="@color/textColor"
         android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/backgroundNote"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@color/TintColorText"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleScanQR"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:text="AVISO"
-        android:textColor="@color/black"
+        android:textColor="@color/textColor"
         app:layout_constraintTop_toBottomOf="@+id/tvTitleScanQR"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
-        android:textColor="@color/black"
+        android:textColor="@color/textColor"
         android:text="Solicita al alumno su QR Para registra su asistencia al plantel"
         app:layout_constraintTop_toBottomOf="@+id/tvTitleScanQR"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,11 +60,14 @@
         android:id="@+id/btnScanQR"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        style="@style/primaryButton"
         android:text="Escanear"
         app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="50dp"
-        android:layout_marginHorizontal="40dp"/>
+        android:layout_marginHorizontal="40dp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/buttonColor"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

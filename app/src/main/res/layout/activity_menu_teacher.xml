@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.view.MenuTeacher"
-    android:background="@color/whitebackground">
+    android:background="@color/backgrounColor">
     <EditText
         android:id="@+id/etUsernameMenuTeacher"
         android:layout_width="match_parent"
@@ -16,7 +16,8 @@
         android:textAlignment="center"
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="20dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/textColor"
+        android:background="@drawable/custom_edit_text"/>
     <ImageView
         android:id="@+id/imgMenuTeacher"
         android:layout_width="wrap_content"
@@ -37,8 +38,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="50dp"
         android:layout_marginHorizontal="30dp"
-        android:backgroundTint="@color/gray"
-        android:textColor="@color/whitebackground"
-       />
+        android:backgroundTint="@color/buttonColor"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

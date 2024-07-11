@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#242624</color>
+    <color name="black">#1b130d</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#878581</color>
-    <color name="whitebackground">#E9E8E4</color>
+    <color name="whitebackground">#fcfaf8</color>
+    <color name="backgrounColor">#fcfaf8</color>
+    <color name="TintColorText">#f4ede7</color>
+    <color name="textColor">#9d764d</color>
+    <color name="buttonColor">#f2800e</color>
 </resources>

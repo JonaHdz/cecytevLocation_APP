@@ -6,7 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.view.ShowQRStudent"
-    android:background="@color/whitebackground">
+    android:background="@color/backgrounColor">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imgBackgroundQR"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/TintColorText"/>
     <ImageView
         android:id="@+id/imgBackgroundQR"
         android:layout_width="210dp"
@@ -14,7 +22,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/black"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/textColor"/>
     <ImageView
         android:id="@+id/imgQR"
         android:layout_width="200dp"
@@ -24,4 +33,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@color/gray"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintTop_toBottomOf="@+id/imgBackgroundQR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/TintColorText"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

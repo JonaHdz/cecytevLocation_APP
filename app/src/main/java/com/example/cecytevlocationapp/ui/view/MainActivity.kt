@@ -51,6 +51,10 @@ class MainActivity : AppCompatActivity() {
                 login()
             }
         }
+        binding.btnSearchStudent.setOnClickListener{
+            var intent = Intent(this, TutorLogin::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun login() {
