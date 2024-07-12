@@ -28,7 +28,13 @@
 }).addTo(map);
 
     //añadir marcador
-    var marker = L.marker([51.5, -0.09]).addTo(map);
+   // var marker = L.marker([51.5, -0.09]).addTo(map);
+
+    function addMarker(lat, lng){
+        L.marker([lat,lng]).addTo(map)
+        .bindPopup('voordenadas: ' + lat + ', ' + lng)
+        .openPopup();
+    }
 </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.example.cecytevlocationapp.ui.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -37,8 +38,12 @@ class TutorLogin : AppCompatActivity() {
         if(getLocationStudentViewModel.httpCodegetStudentLocation == 500){
             alertDialog.showAlertDialog("Error","Ocurrio un error. Favor de intentar mas tarde",this)
         }
-        if (getLocationStudentViewModel.httpCodegetStudentLocation == 200)
+        if (getLocationStudentViewModel.httpCodegetStudentLocation == 200){
             alertDialog.showAlertDialog("EXITO","ESTUDIANTE RECUPERADO:" + LocationProvider.locationStudent,this)
+            var intent = Intent (this, ShowMap::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun loadInfoTest() {
@@ -60,10 +65,9 @@ class TutorLogin : AppCompatActivity() {
     }
 
     private fun setListeners() {
-       binding.btnvalidateTutor.setOnClickListener(
+       binding.btnvalidateTutor.setOnClickListener{
            validateInputs()
-
-       )
+       }
     }
 
 
