@@ -11,6 +11,7 @@ class LocationRepository {
             val retrofit = RetrofitHelper.getRetrofit()
             val apiService = retrofit.create(APIClient::class.java)
             val response = apiService.registerLocationStudent(newLocationStudent)
+            Log.d("BackgroundLocation","Entrando en Repository service")
             if (response.isSuccessful) {
                 Log.d("LocationRepository", "Ubicación enviada correctamente")
             } else {

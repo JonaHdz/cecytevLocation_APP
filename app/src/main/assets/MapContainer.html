@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,29 +11,33 @@
             crossorigin=""></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        #map { height: 100vh; }
+        #map {
+            height: 100vh;
+        }
     </style>
 </head>
-<body style="#map { height: 180px; }">
+<body>
 <div id="map"></div>
 
 <script>
     // Crear un mapa en el div con el id "map"
-    var map = L.map('map').setView([51.505, -0.09], 13);
-    // establecer localizacion por defecto
+    var map = L.map('map').setView([19.544881467268794, -96.90990986351271], 13);
+
+    // Establecer la capa de mapa predeterminada
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
 
-    //añadir marcador
-   // var marker = L.marker([51.5, -0.09]).addTo(map);
-
-    function addMarker(lat, lng){
-        L.marker([lat,lng]).addTo(map)
-        .bindPopup('voordenadas: ' + lat + ', ' + lng)
-        .openPopup();
+    // Función para añadir un marcador
+    function addMarker(lat, lng) {
+        L.marker([lat, lng]).addTo(map)
+            .bindPopup('Coordenadas: ' + lat + ', ' + lng)
+            .openPopup();
     }
+
+    // Exponer la función addMarker al contexto global para que pueda ser llamada desde WebView
+    window.addMarker = addMarker;
 </script>
 </body>
 </html>

@@ -85,7 +85,7 @@
         android:textColor="@color/gray"
         android:layout_marginHorizontal="20dp"/>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/loadinLayerTutor"
+        android:id="@+id/loadingLayerTutor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/whitebackground"
@@ -107,6 +107,7 @@
             app:lottie_fileName="load_animation.json"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
+            android:visibility="visible"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

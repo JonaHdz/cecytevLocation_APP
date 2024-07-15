@@ -1,15 +1,23 @@
 package com.example.cecytevlocationapp.utility
 
 import android.annotation.SuppressLint
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.location.LocationManager
+import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
+import com.example.cecytevlocationapp.R
 import com.example.cecytevlocationapp.data.model.LocationStudentModel
+import com.example.cecytevlocationapp.ui.view.MainActivity
 import com.google.android.gms.location.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,9 +25,10 @@ import kotlinx.coroutines.launch
 
 class BackgroundLocationService : Service() {
     @SuppressLint("MissingPermission")
-     val TAG = "BackgroundLocation"
-     val handler = Handler()
-     val interval: Long = 1500  // 1.5 segundos
+    private val TAG = "BackgroundLocation"
+    private val handler = Handler()
+    private val interval: Long = 1500  // 1.5 segundos
+    private val CHANNEL_ID = "BackgroundLocationChannel"
 
     // Variables de localización
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -35,6 +44,9 @@ class BackgroundLocationService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.d(TAG, "Servicio iniciado en segundo plano")
         super.onCreate()
+
+        // Iniciar el servicio en primer plano
+        startForegroundService()
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         locationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -56,13 +68,11 @@ class BackgroundLocationService : Service() {
                             dateLocation = "",
                             longitudeStudent = location.longitude.toString(),
                             latitudeStudent = location.latitude.toString()
-
                         )
                         locationRepository.sendLocation(x)
                     }
                 }
             }
-
 
             override fun onLocationAvailability(locationAvailability: LocationAvailability) {
                 if (!locationAvailability.isLocationAvailable) {
@@ -88,5 +98,31 @@ class BackgroundLocationService : Service() {
 
     private fun stopLocationUpdates() {
         fusedLocationClient.removeLocationUpdates(locationCallback)
+    }
+
+    private fun startForegroundService() {
+        val notificationIntent = Intent(this, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(
+            this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE
+        )
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                CHANNEL_ID,
+                "Background Location Service",
+                NotificationManager.IMPORTANCE_LOW
+            )
+            val manager = getSystemService(NotificationManager::class.java)
+            manager.createNotificationChannel(channel)
+        }
+
+        val notification: Notification = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setContentTitle("Tracking location")
+            .setContentText("Your location is being tracked in the background")
+            .setSmallIcon(R.drawable.ic_notification)
+            .setContentIntent(pendingIntent)
+            .build()
+
+        startForeground(1, notification)
     }
 }

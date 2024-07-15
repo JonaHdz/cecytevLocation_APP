@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -14,21 +13,18 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
-import com.example.cecytevlocationapp.R
 import com.example.cecytevlocationapp.data.model.LoginModel
 import com.example.cecytevlocationapp.data.model.LoginProvider
 import com.example.cecytevlocationapp.databinding.ActivityMainBinding
 import com.example.cecytevlocationapp.ui.viewModel.LoginViewModel
 import com.example.cecytevlocationapp.utility.BackgroundLocationService
 import com.example.cecytevlocationapp.utility.LocationService
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     val loginViewModel: LoginViewModel by viewModels()
     private lateinit var sharedPreferences: SharedPreferences
-    //private val location = BackgroundLocationService(this)
+    private val location = BackgroundLocationService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -83,8 +79,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleLoginSuccess() {
         if (LoginProvider.userCredentials.type == "student") {
-            // METER EN UN IF LA PANTALLA DE STUDENT PARA VERIFICAR EL PERMISO
             showStudentMenu()
+            startBackgroundLocationService()
         } else {
             showTeacherMenu()
         }
@@ -95,24 +91,23 @@ class MainActivity : AppCompatActivity() {
 
        private fun validatePermissionLocation() {
            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-               Toast.makeText(this, "Pidiendo permiso de ubicación", Toast.LENGTH_SHORT).show()
                ActivityCompat.requestPermissions(
                    this,
                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                    PERMISSION_REQUEST_LOCATION
                )
            } else {
-               Toast.makeText(this, "El permiso de ubicación ya lo tenía", Toast.LENGTH_SHORT).show()
+               Toast.makeText(this, "Permiso de ubicación recuperado" , Toast.LENGTH_SHORT).show()
 
 
            }
        }
 
 
-   /*    private fun startBackgroundLocationService() {
-           val serviceIntent = Intent(this, BackgroundLocationService(this)::class.java)
-           startService(serviceIntent)
-       }*/
+       private fun startBackgroundLocationService() {
+           val serviceIntent = Intent(this, BackgroundLocationService()::class.java)
+          startService(serviceIntent)
+       }
 
        // ACTIVA AL DAR PERMISO DE LOCALIZACION
        override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {

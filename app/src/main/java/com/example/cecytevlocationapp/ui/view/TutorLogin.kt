@@ -2,6 +2,7 @@ package com.example.cecytevlocationapp.ui.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -33,6 +34,8 @@ class TutorLogin : AppCompatActivity() {
     }
 
     private fun loadResponse()  {
+        binding.loadingLayerTutor.visibility = View.GONE
+        binding.btnvalidateTutor.visibility = View.VISIBLE
         if (getLocationStudentViewModel.httpCodegetStudentLocation ==400)
             alertDialog.showAlertDialog("Error","No se encontró al estudiante, compruebe los datos de entrada",this);
         if(getLocationStudentViewModel.httpCodegetStudentLocation == 500){
@@ -47,6 +50,8 @@ class TutorLogin : AppCompatActivity() {
     }
 
     private fun loadInfoTest() {
+        binding.loadingLayerTutor.visibility = View.VISIBLE
+        binding.btnvalidateTutor.visibility = View.GONE
         var credentials = TutorCredencialsLocation(
             idStudent = binding.etStudenIdTutor.text.toString(),
             telephoneTutor = binding.etTelephoneNumberTutor.text.toString()
