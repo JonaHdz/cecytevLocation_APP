@@ -1,6 +1,7 @@
 package com.example.cecytevlocationapp.ui.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
@@ -25,6 +26,15 @@ class ShowMap : AppCompatActivity() {
         setContentView(binding.root)
         setupWebView()
         loadLeafletMap()
+        setListeners()
+    }
+
+    private fun setListeners() {
+        binding.btnExitShowMap.setOnClickListener{
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     @SuppressLint("SetJavaScriptEnabled")

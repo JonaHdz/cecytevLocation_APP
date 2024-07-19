@@ -23,9 +23,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CecytevLocationApp"
         tools:targetApi="31">
+
         <service
             android:name=".utility.BackgroundLocationService"
             android:foregroundServiceType="location" />
+        <service
+            android:name=".java.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".ui.view.TutorLogin"
             android:exported="false" />

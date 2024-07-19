@@ -26,5 +26,10 @@ class MenuTeacher : AppCompatActivity() {
             val intent = Intent (this, ScanQR::class.java)
             startActivity(intent)
         }
+        binding.btnExitMenuTeacher.setOnClickListener{
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

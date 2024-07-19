@@ -8,6 +8,7 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.location.LocationManager
 import android.os.Build
 import android.os.Handler
@@ -23,7 +24,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class BackgroundLocationService : Service() {
+class BackgroundLocationService() : Service() {
     @SuppressLint("MissingPermission")
     private val TAG = "BackgroundLocation"
     private val handler = Handler()
@@ -36,6 +37,9 @@ class BackgroundLocationService : Service() {
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationManager: LocationManager
     private val locationRepository = LocationRepository()
+    var idStudenMain : String = ""
+   //val sharedPreferences : SharedPreferences = getSharedPreferences("MyPrefs",Context.MODE_PRIVATE)
+
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -60,17 +64,23 @@ class BackgroundLocationService : Service() {
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 locationResult.lastLocation?.let { location ->
-                    Log.d("MyService", "Ubicación: ${location.longitude}, ${location.latitude}")
-                    Toast.makeText(this@BackgroundLocationService, "Ubicación: ${location.longitude}, ${location.latitude}", Toast.LENGTH_SHORT).show()
-                    CoroutineScope(Dispatchers.IO).launch {
-                        val x = LocationStudentModel(
-                            idStudent = "S123456",
-                            dateLocation = "",
-                            longitudeStudent = location.longitude.toString(),
-                            latitudeStudent = location.latitude.toString()
-                        )
-                        locationRepository.sendLocation(x)
+                    var sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                    var idStudentSP = sharedPreferences.getString("idStudent","")
+                    //Toast.makeText(this@BackgroundLocationService, "id en preferences: " + idStudentSP, Toast.LENGTH_SHORT).show()
+                   // var idSudentSP = sharedPreferences.getString("idStudent","")
+                 //   Toast.makeText(this@BackgroundLocationService, "id en preferences: " + idSudentSP, Toast.LENGTH_SHORT).show()
+                    if(!idStudentSP.toString().isBlank()){
+                        CoroutineScope(Dispatchers.IO).launch {
+                            val x = LocationStudentModel(
+                                idStudent = idStudentSP.toString(),
+                                dateLocation = "",
+                                longitudeStudent = location.longitude.toString(),
+                                latitudeStudent = location.latitude.toString()
+                            )
+                            locationRepository.sendLocation(x)
+                        }
                     }
+
                 }
             }
 

@@ -45,6 +45,11 @@ class ScanQR : AppCompatActivity() {
         binding.btnScanQR.setOnClickListener{
             initScanner()
         }
+        binding.btnExitScanQR.setOnClickListener{
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun initScanner() {

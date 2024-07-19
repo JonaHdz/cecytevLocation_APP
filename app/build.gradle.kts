@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -71,10 +72,11 @@ dependencies {
     implementation("com.google.zxing:core:3.4.1")
     implementation("androidx.appcompat:appcompat:1.3.1")
     implementation("com.journeyapps:zxing-android-embedded:4.2.0")
-
+    //lottie
     implementation("com.airbnb.android:lottie:6.1.0")
-
     implementation("androidx.cardview:cardview:1.0.0")
-
+    //firebase
     implementation ("com.google.android.gms:play-services-location:18.0.0")
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation(platform("com.google.firebase:firebase-messaging-ktx"))
 }

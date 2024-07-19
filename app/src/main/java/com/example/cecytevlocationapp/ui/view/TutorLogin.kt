@@ -17,10 +17,12 @@ import com.example.cecytevlocationapp.databinding.ActivityTutorLoginBinding
 import com.example.cecytevlocationapp.domain.GetStudentLocationUseCase
 import com.example.cecytevlocationapp.ui.viewModel.StudentLocationViewModel
 import com.example.cecytevlocationapp.utility.AlertMessage
+import com.example.cecytevlocationapp.utility.Codes
 
 class TutorLogin : AppCompatActivity() {
     lateinit var binding : ActivityTutorLoginBinding
     val getLocationStudentViewModel : StudentLocationViewModel by viewModels()
+
 
     var alertDialog = AlertMessage()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,12 +38,12 @@ class TutorLogin : AppCompatActivity() {
     private fun loadResponse()  {
         binding.loadingLayerTutor.visibility = View.GONE
         binding.btnvalidateTutor.visibility = View.VISIBLE
-        if (getLocationStudentViewModel.httpCodegetStudentLocation ==400)
+        if (getLocationStudentViewModel.httpCodegetStudentLocation == Codes.CODE_NOT_FOUND)
             alertDialog.showAlertDialog("Error","No se encontró al estudiante, compruebe los datos de entrada",this);
-        if(getLocationStudentViewModel.httpCodegetStudentLocation == 500){
+        if(getLocationStudentViewModel.httpCodegetStudentLocation == Codes.CODE_FAIL){
             alertDialog.showAlertDialog("Error","Ocurrio un error. Favor de intentar mas tarde",this)
         }
-        if (getLocationStudentViewModel.httpCodegetStudentLocation == 200){
+        if (getLocationStudentViewModel.httpCodegetStudentLocation ==Codes.CODE_SUCCESS){
             alertDialog.showAlertDialog("EXITO","ESTUDIANTE RECUPERADO:" + LocationProvider.locationStudent,this)
             var intent = Intent (this, ShowMap::class.java)
             startActivity(intent)

@@ -10,6 +10,35 @@
        android:id="@+id/wbMap"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
+       app:layout_constraintBottom_toTopOf="@+id/btnExitShowMap"
        />
+   <Button
+       android:id="@+id/btnExitShowMap"
+       android:layout_width="match_parent"
+       android:layout_height="40dp"
+       android:text="Regresar"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       android:layout_marginTop="20dp"
+       android:layout_marginHorizontal="100dp"
+       android:textColor="@color/whitebackground"
+       android:backgroundTint="@color/buttonColor"
+       android:textStyle="bold"
+       android:textSize="15dp" />
+   <Button
+       android:id="@+id/btnUpdateLocation"
+       android:layout_width="match_parent"
+       android:layout_height="40dp"
+       android:text="Actualizar ubicación"
+       app:layout_constraintBottom_toTopOf="@+id/btnExitShowMap"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       android:layout_marginTop="20dp"
+       android:layout_marginHorizontal="100dp"
+       android:textColor="@color/whitebackground"
+       android:backgroundTint="@color/buttonColor"
+       android:textStyle="bold"
+       android:textSize="15dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

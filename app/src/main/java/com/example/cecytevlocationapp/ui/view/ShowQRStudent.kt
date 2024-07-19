@@ -1,5 +1,6 @@
 package com.example.cecytevlocationapp.ui.view
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -22,7 +23,15 @@ class ShowQRStudent : AppCompatActivity() {
         setContentView(binding.root)
         val bitmap = generateQRCode(LoginProvider.userCredentials.idUser)
         binding.imgQR.setImageBitmap(bitmap)
+        setListener()
+    }
 
+    private fun setListener() {
+        binding.btnExitShowQR.setOnClickListener{
+            var intent = Intent(this, MenuStudent::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun generateQRCode(text: String): Bitmap? {

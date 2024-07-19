@@ -39,8 +39,22 @@
         android:layout_marginTop="50dp"
         android:layout_marginHorizontal="30dp"
         android:backgroundTint="@color/buttonColor"
-        android:textColor="@color/black"
+        android:textColor="@color/whitebackground"
         android:textSize="20dp"
         android:textStyle="bold"/>
+    <Button
+        android:id="@+id/btnExitMenuTeacher"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Cerrar Sesión"
+        app:layout_constraintTop_toBottomOf="@+id/btnScanQR"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="30dp"
+        android:textColor="@color/whitebackground"
+        android:backgroundTint="@color/buttonColor"
+        android:textStyle="bold"
+        android:textSize="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

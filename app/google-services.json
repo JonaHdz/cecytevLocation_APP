@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "616075878038",
+    "project_id": "cecytevlocationnotification",
+    "storage_bucket": "cecytevlocationnotification.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616075878038:android:209fec17568058eacfacb7",
+        "android_client_info": {
+          "package_name": "com.example.cecytevlocationapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfN3ptTJuBeMNAGlqEp0OdzOpAerlTylM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

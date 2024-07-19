@@ -64,10 +64,25 @@
         app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="130dp"
         android:layout_marginHorizontal="40dp"
-        android:textColor="@color/black"
+        android:textColor="@color/whitebackground"
         android:backgroundTint="@color/buttonColor"
         android:textStyle="bold"
         android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/btnExitScanQR"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/buttonColor"
+        android:text="Cerrar Sesión"
+        android:textColor="@color/whitebackground"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnScanQR" />
 </androidx.constraintlayout.widget.ConstraintLayout>

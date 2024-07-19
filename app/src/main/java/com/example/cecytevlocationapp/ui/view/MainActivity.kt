@@ -17,7 +17,9 @@ import com.example.cecytevlocationapp.data.model.LoginModel
 import com.example.cecytevlocationapp.data.model.LoginProvider
 import com.example.cecytevlocationapp.databinding.ActivityMainBinding
 import com.example.cecytevlocationapp.ui.viewModel.LoginViewModel
+import com.example.cecytevlocationapp.utility.AlertMessage
 import com.example.cecytevlocationapp.utility.BackgroundLocationService
+import com.example.cecytevlocationapp.utility.Codes
 import com.example.cecytevlocationapp.utility.LocationService
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     val loginViewModel: LoginViewModel by viewModels()
     private lateinit var sharedPreferences: SharedPreferences
     private val location = BackgroundLocationService()
+    private val alertDialog = AlertMessage()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -38,18 +41,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun validateInputs(): Boolean {
+        if(binding.etUser.text.isBlank() || binding.etPassword.text.isBlank()){
+            return false
+        }
         return true
     }
 
     private fun setListener() {
         binding.btnLogin.setOnClickListener {
             if (validateInputs()) {
+                binding.btnSearchStudent.visibility = View.GONE
                 login()
+            }else{
+                alertDialog.showAlertDialog("Error","ALguno de los campos se encuentra vacio. Favor de verificar",this)
             }
         }
         binding.btnSearchStudent.setOnClickListener{
             var intent = Intent(this, TutorLogin::class.java)
             startActivity(intent)
+        }
+        binding.btnExitLogin.setOnClickListener{
+            finish()
         }
     }
 
@@ -68,10 +80,11 @@ class MainActivity : AppCompatActivity() {
         loginViewModel.loginViewModel.observe(this) { result ->
             binding.loadinLayer.visibility = View.GONE
             binding.btnLogin.visibility = View.VISIBLE
+            binding.btnSearchStudent.visibility = View.VISIBLE
             when (result) {
-                200 -> handleLoginSuccess()
-                404 -> showAlertDialog("Usuario no encontrado", "Matrícula o contraseña incorrecta. Favor de intentar de nuevo.")
-                400 -> showAlertDialog("Error", "Error de conexión. Favor de revisar su conexión o intentar más tarde.")
+                Codes.CODE_SUCCESS -> handleLoginSuccess()
+                Codes.CODE_NOT_FOUND -> showAlertDialog("Usuario no encontrado", "Matrícula o contraseña incorrecta. Favor de intentar de nuevo.")
+                Codes.CODE_FAIL -> showAlertDialog("Error", "Error de conexión. Favor de revisar su conexión o intente más tarde.")
                 else -> showAlertDialog("Error", "Ha ocurrido un error inesperado.")
             }
         }
@@ -119,7 +132,6 @@ class MainActivity : AppCompatActivity() {
                        // Permiso concedido, puedes acceder a la ubicación
                         val serviceIntent = Intent(this, BackgroundLocationService::class.java)
                         startService(serviceIntent)
-                       Toast.makeText(this,"kjbasdkjads",Toast.LENGTH_SHORT).show()
                    } else {
                        // Permiso denegado, no puedes acceder a la ubicación
                        finish()
@@ -153,6 +165,9 @@ class MainActivity : AppCompatActivity() {
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
         editor.putString("idStudent", LoginProvider.userCredentials.idUser)
         editor.apply()
+
+        var idSudentSP = sharedPreferences.getString("idStudent","")
+        Toast.makeText(this,"shared: " + idSudentSP, Toast.LENGTH_SHORT).show()
     }
 
     private fun showAlertDialog(title: String, message: String) {
@@ -165,53 +180,5 @@ class MainActivity : AppCompatActivity() {
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
-
-    /*
-    private val LOCATION_PERMISSIONS_REQUEST_CODE = 1001
-
-    private fun checkAndRequestPermissions() {
-        val permissions = arrayOf(
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.FOREGROUND_SERVICE_LOCATION
-        )
-
-        val permissionsNeeded = permissions.filter {
-            ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
-        }
-
-        if (permissionsNeeded.isNotEmpty()) {
-            ActivityCompat.requestPermissions(this, permissionsNeeded.toTypedArray(), LOCATION_PERMISSIONS_REQUEST_CODE)
-        } else {
-            // Todos los permisos están concedidos, puedes iniciar el servicio en primer plano aquí.
-            startBackgroundLocationService()
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == LOCATION_PERMISSIONS_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
-                Toast.makeText(this,"PERMISO ACEPTADO",Toast.LENGTH_SHORT).show()
-                // Todos los permisos están concedidos, puedes iniciar el servicio en primer plano aquí.
-                startBackgroundLocationService()
-            } else {
-                // Manejar el caso donde los permisos no fueron concedidos.
-                Toast.makeText(this,"PERMISO RECHAZADO",Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private fun startBackgroundLocationService() {
-        Toast.makeText(this,"adsadsadsadsads",Toast.LENGTH_SHORT).show()
-        Log.e("DESDE MAIN", "FUNCION ANTES DEL SERVICE")
-        val intent = Intent(this, BackgroundLocationService::class.java)
-        ContextCompat.startForegroundService(this, intent)
-    }
-*/
 }
 

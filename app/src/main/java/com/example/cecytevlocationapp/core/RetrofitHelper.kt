@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitHelper {
     fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://3c19-189-161-124-205.ngrok-free.app")//URL DE KNOR
+            .baseUrl("https://e8bf-201-105-108-131.ngrok-free.app")//URL DE KNOR
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

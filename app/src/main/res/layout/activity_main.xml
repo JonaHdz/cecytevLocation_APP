@@ -96,8 +96,21 @@
         android:layout_marginHorizontal="50dp"
         android:textColor="@color/white"
         android:backgroundTint="@color/buttonColor"
-        android:textSize="15dp"
-        android:layout_marginBottom="20dp"/>
+        android:textSize="15dp"/>
+    <Button
+        android:id="@+id/btnExitLogin"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        android:layout_marginTop="20dp"
+        android:text="SALIR"
+        android:layout_marginHorizontal="50dp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/buttonColor"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/loadinLayer"
         android:layout_width="match_parent"

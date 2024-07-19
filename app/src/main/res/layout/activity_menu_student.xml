@@ -37,7 +37,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="50dp"
         android:layout_marginHorizontal="30dp"
-        android:textColor="@color/black"
+        android:textColor="@color/whitebackground"
+        android:backgroundTint="@color/buttonColor"
+        android:textStyle="bold"
+        android:textSize="15dp" />
+    <Button
+        android:id="@+id/btnExitMenuStudent"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Cerrar Sesión"
+        app:layout_constraintTop_toBottomOf="@+id/btnShowQR"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="30dp"
+        android:textColor="@color/whitebackground"
         android:backgroundTint="@color/buttonColor"
         android:textStyle="bold"
         android:textSize="15dp" />

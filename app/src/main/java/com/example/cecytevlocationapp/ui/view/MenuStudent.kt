@@ -6,11 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cecytevlocationapp.data.model.LoginProvider
 import com.example.cecytevlocationapp.databinding.ActivityMenuStudentBinding
+import com.example.cecytevlocationapp.utility.AlertMessage
 
 
 class MenuStudent : AppCompatActivity() {
     lateinit var binding : ActivityMenuStudentBinding
-
+    val alertDialog = AlertMessage()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMenuStudentBinding.inflate(layoutInflater)
@@ -19,11 +20,6 @@ class MenuStudent : AppCompatActivity() {
         setListener()
 
     }
-  /*  private fun saveSharedPreferences() {
-        val editor = sharedPreferences.edit()
-        editor.putString("idStudent", LoginProvider.userCredentials.idUser)
-        editor.apply()
-    }*/
 
     private fun setListener() {
         binding.etUsernameMenuStudent.setText(LoginProvider.userCredentials.nameUser + " " + LoginProvider.userCredentials.lastnameUser)
@@ -31,6 +27,11 @@ class MenuStudent : AppCompatActivity() {
         binding.btnShowQR.setOnClickListener{
             val intent = Intent(this, ShowQRStudent::class.java)
             startActivity(intent)
+        }
+        binding.btnExitMenuStudent.setOnClickListener{
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }
