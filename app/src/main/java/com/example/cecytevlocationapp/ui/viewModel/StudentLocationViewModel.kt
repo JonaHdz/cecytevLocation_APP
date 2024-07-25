@@ -42,7 +42,7 @@ class StudentLocationViewModel :ViewModel(){
         }
     }
 
-    var httpCodegetChildrenLocation: Int = 400
+    var httpCodegetChildrenList: Int = 400
     lateinit var telephone: String
     lateinit var  getChildrenLocationUseCase: GetChildrenListUseCase
     val getChildrenListViewModel = MutableLiveData<Int>()
@@ -52,7 +52,7 @@ class StudentLocationViewModel :ViewModel(){
             getChildrenLocationUseCase = GetChildrenListUseCase()
             val result = getChildrenLocationUseCase(telephone) // Llama al caso de uso
             getChildrenListViewModel.postValue(result)
-            httpCodegetChildrenLocation = result
+            httpCodegetChildrenList = result
         }
     }
 }
