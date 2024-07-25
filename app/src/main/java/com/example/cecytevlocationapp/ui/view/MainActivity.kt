@@ -20,6 +20,7 @@ import com.example.cecytevlocationapp.ui.viewModel.LoginViewModel
 import com.example.cecytevlocationapp.utility.AlertMessage
 import com.example.cecytevlocationapp.utility.BackgroundLocationService
 import com.example.cecytevlocationapp.utility.Codes
+import com.example.cecytevlocationapp.utility.JobPosition
 import com.example.cecytevlocationapp.utility.LocationService
 
 class MainActivity : AppCompatActivity() {
@@ -67,8 +68,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun login() {
         val login = LoginModel(
-            idStudent = binding.etUser.text.toString(),
-            passwordStudent = binding.etPassword.text.toString()
+            user = binding.etUser.text.toString(),
+            passwordUser= binding.etPassword.text.toString()
         )
         loginViewModel.loginModel = login
         loginViewModel.login()
@@ -91,11 +92,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleLoginSuccess() {
-        if (LoginProvider.userCredentials.type == "student") {
-            showStudentMenu()
-            startBackgroundLocationService()
-        } else {
-            showTeacherMenu()
+        when(LoginProvider.userCredentials.type){
+            JobPosition.STUDENT -> {
+                showStudentMenu()
+                startBackgroundLocationService()
+            }
+            JobPosition.TEACHER -> showTeacherMenu()
+            JobPosition.PARENT -> ShowParentMenu()
         }
     }
 
@@ -148,6 +151,13 @@ class MainActivity : AppCompatActivity() {
         finish()
     }
 
+    fun ShowParentMenu() {
+        val intent = Intent(this,ShowMenuParent::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+
     private fun showTeacherMenu() {
         val intent = Intent(this, MenuTeacher::class.java)
         startActivity(intent)
@@ -181,4 +191,5 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 }
+
 

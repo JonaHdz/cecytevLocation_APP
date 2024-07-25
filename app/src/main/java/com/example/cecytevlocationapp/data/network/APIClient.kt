@@ -2,8 +2,11 @@ package com.example.cecytevlocationapp.data.network
 
 import com.example.cecytevlocationapp.data.model.AttendanceModel
 import com.example.cecytevlocationapp.data.model.AttendanceStudentResponse
+import com.example.cecytevlocationapp.data.model.ChildInfo
+import com.example.cecytevlocationapp.data.model.ChildrenListFiltered
 import com.example.cecytevlocationapp.data.model.LocationStudentModel
 import com.example.cecytevlocationapp.data.model.LoginModel
+import com.example.cecytevlocationapp.data.model.TelephoneParent
 import com.example.cecytevlocationapp.data.model.TutorCredencialsLocation
 import com.example.cecytevlocationapp.data.model.UserModel
 import retrofit2.Response
@@ -20,4 +23,6 @@ interface APIClient {
     suspend fun registerLocationStudent(@Body locationStudent : LocationStudentModel): Response<Void>
     @POST("api/v1/location/getLocationStudent")
     suspend fun getLocationStudent(@Body locationStudent : TutorCredencialsLocation): Response<LocationStudentModel>
+    @POST("api/v1/location/getChildrenList")
+    suspend fun getChildrenList(@Body telephoneParent : TelephoneParent): Response<ChildrenListFiltered>
 }

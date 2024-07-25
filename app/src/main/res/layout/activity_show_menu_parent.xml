@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.view.ShowMenuParent">
+    <TextView
+        android:id="@+id/tvTitleShowMenuParent"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Lista de alumnos"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/textColor"
+        android:backgroundTint="@color/TintColorText"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAlignment="center"
+        android:textSize="18dp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/tvNoteShowMenuParent"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Selecciona a un estudiante par visualizar su ubicación"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleShowMenuParent"
+        android:textColor="@color/textColor"
+        android:layout_marginHorizontal="20dp"
+        android:backgroundTint="@color/TintColorText"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnExitShowMenuParent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNoteShowMenuParent"
+        android:backgroundTint="@color/TintColorText"
+        android:layout_marginHorizontal="20dp"/>
+    <Button
+        android:id="@+id/btnExitShowMenuParent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Cerrrar sesion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/buttonColor"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="40dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

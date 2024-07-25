@@ -1,5 +1,6 @@
 package com.example.cecytevlocationapp.data.Repository
 
+import android.util.Log
 import com.example.cecytevlocationapp.data.model.AttendanceModel
 import com.example.cecytevlocationapp.data.model.AttendanceProvider
 import com.example.cecytevlocationapp.data.model.LocationProvider
@@ -21,4 +22,11 @@ class StudentLocationRepository {
         return response.first
     }
 
+    suspend fun getChildrenList(telephone : String) : Int{
+        Log.d("testService","en repositorio 1")
+        var response = api.getChildrenList(telephone)
+        LocationProvider.childrenList = response.second
+        Log.d("testService","return del repository" + response.second.childrenListFiltered.toString())
+        return response.first
+    }
 }

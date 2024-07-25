@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/tvIdStudentItemShowMenuParent"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Matricula: "
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/tvNameStudentItemShowMenuParent"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Nombre: "
+        app:layout_constraintTop_toBottomOf="@+id/tvIdStudentItemShowMenuParent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/tvIdStudentItemShowMenuParentInput"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Texto de prueba "
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@+id/tvIdStudentItemShowMenuParent" />
+    <TextView
+        android:id="@+id/tvNameStudentItemShowMenuParentInput"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Texto de prueba "
+        app:layout_constraintTop_toBottomOf="@+id/tvIdStudentItemShowMenuParent"
+        app:layout_constraintStart_toEndOf="@+id/tvNameStudentItemShowMenuParent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp" />
+    <ImageButton
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/gps_icon"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="20dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 
 import com.example.cecytevlocationapp.data.model.LocationStudentModel
 import com.example.cecytevlocationapp.data.model.TutorCredencialsLocation
+import com.example.cecytevlocationapp.domain.GetChildrenListUseCase
 import com.example.cecytevlocationapp.domain.GetStudentLocationUseCase
 import com.example.cecytevlocationapp.domain.registerAttendanceUseCase
 import com.example.cecytevlocationapp.domain.registerStudentLocationUseCase
@@ -38,6 +39,20 @@ class StudentLocationViewModel :ViewModel(){
             val result = getStudentLocationUseCase(credentials) // Llama al caso de uso
             getstudentLocationViewModel.postValue(result)
             httpCodegetStudentLocation = result
+        }
+    }
+
+    var httpCodegetChildrenLocation: Int = 400
+    lateinit var telephone: String
+    lateinit var  getChildrenLocationUseCase: GetChildrenListUseCase
+    val getChildrenListViewModel = MutableLiveData<Int>()
+
+    fun getChildrenList() {
+        viewModelScope.launch {
+            getChildrenLocationUseCase = GetChildrenListUseCase()
+            val result = getChildrenLocationUseCase(telephone) // Llama al caso de uso
+            getChildrenListViewModel.postValue(result)
+            httpCodegetChildrenLocation = result
         }
     }
 }
