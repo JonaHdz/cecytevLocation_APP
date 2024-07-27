@@ -24,6 +24,7 @@ class ShowMap : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityShowMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //recupera info del hijo
         setupWebView()
         loadLeafletMap()
         setListeners()
